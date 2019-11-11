@@ -1,0 +1,111 @@
+
+<div> 
+  <h1 class="text-center my-4"> Welcom to my weather app </h1>
+</div>  
+
+<div class="text-right my-4">
+<button (click)="moveToFavorites()" class="btn btn-primary"> Favorites list</button>
+</div>
+
+
+    <div  class="row" >
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{day1}}</h5>
+              <h3> {{w?.defaultCity?.name}} </h3>
+              <div  class="text-center">
+              <h1 class="card-text">{{w?.oneDayDetails?.Temperature?.Maximum?.Value | json}}</h1> <a> C </a>
+              </div>
+              <h3 class="card-text"> {{w?.oneDayDetails?.Day?.IconPhrase }}  </h3>
+        </div>
+          </div>
+        </div>
+</div>
+
+
+
+<div class="col-md-6">
+    <h3 class="text-center my-4">Search for Weather:</h3>
+    <form>
+      <div>
+        <label style="color:red" *ngIf = "this.w?.incorrectCityName"> Please write the city name correctly or choose other city </label>
+      <div class="form-group">
+        <input
+          class="form-control"
+          type="text" 
+          id="weatherLocation"
+          aria-describedby="weatherLocation"
+          placeholder="Please input a Location" #cityName
+        />
+     
+      <div class="text-center">
+          <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="customSwitches">
+              <label class="custom-control-label" (click)="w.toggleCelsiusSwich()" for="customSwitches">To Celsius results</label>
+          </div>
+        <button type="submit" (click)="w.showCityConfig(cityName.value)" class="btn btn-success btn-md">
+          Search for the weather
+        </button>
+       
+      </div>
+      </div>
+      </div>
+    </form>
+  </div>
+
+<div *ngIf = "w.isCelsius">
+  <div *ngIf = "w.showAddToFavoritesBtn" class="col-md-6">
+      <h3 class="text-center my-4">Weather Details:</h3>
+  </div>
+  <div class="row" *ngFor="let daily of w.dailyForecast; let i = index">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{i==0?day1:i==1?day2:i==2?day3:i==3?day4:day5}}</h5>
+          <div  class="text-center">
+          <h1 class="card-text">{{daily?.Temperature?.Maximum.Value | json}}</h1> <h5> C </h5>
+          </div>
+          <h3 class="card-text"> {{daily?.Day?.IconPhrase }}  </h3>
+        </div>
+      </div>
+    </div>
+</div>
+    <div *ngIf = "w.showAddToFavoritesBtn" class="text-center">
+        <button type="submit" (click)="w.addToFavorites()" class="btn btn-success btn-md">
+            add to favorites
+          </button>
+          <button type="submit" (click)="w.changeDefaultCity()" class="btn btn-primary btn-md">
+              Set as default
+          </button>
+    </div>
+  </div> 
+       <br/>
+
+<div *ngIf = "!w.isCelsius">
+  <div *ngIf="w.showAddToFavoritesBtn" class="col-md-6">
+      <h3 class="text-center my-4">Weather Details:</h3>
+  </div>
+  <div class="row" *ngFor="let daily of w.dailyForecast; let i = index">
+    <div class="col-sm-6">
+         <div class="card">
+             <div class="card-body">
+                <h5 class="card-title">{{i==0?day1:i==1?day2:i==2?day3:i==3?day4:day5}}</h5>
+              <div class="text-center">
+                <h1 class="card-text"> {{daily?.Temperature?.Maximum.Value | json}}</h1> <h5> F </h5>
+              </div>
+                <h3 class="card-text"> {{daily?.Day?.IconPhrase}} </h3>
+            </div>
+        </div>
+   </div>
+</div>
+  <div *ngIf="w.showAddToFavoritesBtn" class="text-center">
+    <button type="submit" (click)="w.addToFavorites()" class="btn btn-success btn-md">
+                    add to favorites
+    </button>
+    <button type="submit" (click)="w.changeDefaultCity()" class="btn btn-primary btn-md">
+        Set as default
+    </button>
+  </div>
+</div> 
+            
