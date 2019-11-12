@@ -78,7 +78,7 @@ export class WeatherComponent implements OnInit {
     this.w.tempCityDetailsForFavorites.code = '';
 
     this.w.isCelsius = true;
-    //this.w.showFavoriteConfig(this.w.defaultCity.code);
+    this.w.showFavoriteConfig(this.w.defaultCity.code);
 
   }
 
