@@ -14,7 +14,7 @@ export class FavoritesComponent implements OnInit {
   //dailyForecasts: any;
   
 
-  constructor(private router:Router, private weatherService:WeatherService) {
+  constructor(private router:Router, public weatherService:WeatherService) {
     
    }
 
