@@ -36,8 +36,8 @@ export class WeatherService {
   cities:Array<City> = new Array<City>();
 
   apiKey= 'yC3Cj5ToIR1x0RCHI38AJdzznLupzrFt'; 
-  getCodeUrl='http://dataservice.accuweather.com/locations/v1/search?q=';
-  getWeatherUrl='http://dataservice.accuweather.com/forecasts/v1/daily/5day/';
+  getCodeUrl='https://dataservice.accuweather.com/locations/v1/search?q=';
+  getWeatherUrl='https://dataservice.accuweather.com/forecasts/v1/daily/5day/';
 
   
   tempCityDetailsForFavorites:City = new City();
